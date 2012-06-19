@@ -9,7 +9,7 @@ unless File.directory?(hiredis_dir)
 end
 
 # Make sure hiredis is built...
-system("cd #{hiredis_dir} && make")
+system("cd #{hiredis_dir} && make static")
 
 # Statically link to hiredis (mkmf can't do this for us)
 $CFLAGS << " -I#{hiredis_dir}"
