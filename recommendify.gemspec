@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   # Not building native extension by default
   s.extensions = Dir["ext/extconf.rb"]
       s.files += Dir["ext/*.{rb,c,h}"]
-      s.files += Dir["vendor/hiredis/*.{c,h}"] -
+      s.files += Dir["vendor/hiredis/**/*.{c,h}"] -
         Dir["vendor/hiredis/example*"] +
         Dir["vendor/hiredis/COPYING"] +
         Dir["vendor/hiredis/Makefile"]
