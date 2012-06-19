@@ -14,7 +14,12 @@ Gem::Specification.new do |s|
   s.licenses    = ["MIT"]
 
   # Not building native extension by default
-  # s.extensions = ['ext/extconf.rb']
+  s.extensions = Dir["ext/extconf.rb"]
+      s.files += Dir["ext/*.{rb,c,h}"]
+      s.files += Dir["vendor/hiredis/*.{c,h}"] -
+        Dir["vendor/hiredis/example*"] +
+        Dir["vendor/hiredis/COPYING"] +
+        Dir["vendor/hiredis/Makefile"]
 
   s.add_dependency "redis", ">= 2.2.2"
 
