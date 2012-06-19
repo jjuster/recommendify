@@ -12,6 +12,8 @@ Gem::Specification.new do |s|
   s.summary     = %q{ruby/redis based recommendation engine (collaborative filtering)}
   s.description = %q{Recommendify is a distributed, incremental item-based recommendation engine for binary input ratings. It's based on ruby and redis and uses an approach called "Collaborative Filtering"}
   s.licenses    = ["MIT"]
+  
+  s.files = []
 
   # Not building native extension by default
   s.extensions = Dir["ext/extconf.rb"]
@@ -25,7 +27,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "rspec", "~> 2.8.0"
 
-  s.files         = `git ls-files`.split("\n") - [".gitignore", ".rspec", ".travis.yml"]
+  s.files         += `git ls-files`.split("\n") - [".gitignore", ".rspec", ".travis.yml"]
   s.test_files    = `git ls-files -- spec/*`.split("\n")
   s.require_paths = ["lib"]
 end
