@@ -20,7 +20,7 @@ makefile = <<-MAKEFILE
 all: prepare build
 
 build:
-	gcc -Wall recommendify.c -I#{hiredis_dir} -lhiredis -o ../bin/recommendify
+	gcc -Wall recommendify.c #{$CFLAGS} #{$LDFLAGS} -o ../bin/recommendify
 
 prepare:
 	mkdir -p ../bin
