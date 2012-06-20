@@ -88,7 +88,7 @@ int main(int argc, char **argv){
   }
 
   /* Authentication (only runs if argv[5] exists) */
-  printf("Password (argv[5]): %s\n",(char *) argv[5]);
+  redisCommand(c, "SET debug %s", (char *) argv[5])
   if(argv[5] != NULL || argv[5] != "") {
     reply = redisCommand(c, "AUTH %s", (char *) argv[5]);
     //if their password is incorrect, you exit with error (return 0)
