@@ -89,7 +89,7 @@ int main(int argc, char **argv){
 
   /* Authentication (only runs if argv[5] exists) */
   if(argc > 5) {
-    printf("%s", argv[5])//This just sums up how painful this language is
+    printf("%s", argv[5]);//This just sums up how painful this language is
     reply = redisCommand(c, "AUTH %s", argv[5]);
     //if their password is incorrect, you exit with error (return 0)
     if (reply->type == REDIS_REPLY_ERROR) {
