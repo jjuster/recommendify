@@ -12,6 +12,7 @@
 
 #define USAGE_STRING "usage: %s " \
  "{--version|--jaccard|--cosine} " \
- "[redis_key] [item_id]\n"
+ "[redis_key] [item_id] [redis_url] [password]\n" 
+
 
 #endif

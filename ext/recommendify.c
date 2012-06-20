@@ -33,7 +33,7 @@ int main(int argc, char **argv){
   } redis_addr;
 
   /* option parsing */
-  if(argc < 2)
+  if(argc < 5)
     return print_usage(argv[0]);
 
   if(!strcmp(argv[1], "--version"))
@@ -48,7 +48,7 @@ int main(int argc, char **argv){
   if(!similarityFunc){
     printf("invalid option: %s\n", argv[1]);
     return 1;
-  } else if(argc < 4 || argc > 5){
+  } else if(argc < 4 || argc > 6){
     printf("wrong number of arguments\n");
     print_usage(argv[0]);
     return 1;
