@@ -87,6 +87,17 @@ int main(int argc, char **argv){
     return 1;
   }
 
+  /* Authentication (only runs if argv[5] exists) */
+  if(argv[5] != NULL || argv[5] != "")
+    reply = redisCommand(ctx, "AUTH %s", argv[5]);
+
+  //if their password is incorrect, you exit with error (return 0)
+  if (reply->type == REDIS_REPLY_ERROR) {
+    printf("Authentication error:\n %s\n", REDIS_REPLY_ERROR);
+    return 0
+  }
+
+  freeReplyObject(reply);
 
   /* get item count */
   reply = redisCommand(c,"HGET %s:items %s", redisPrefix, itemID);    
@@ -94,6 +105,8 @@ int main(int argc, char **argv){
   if(reply->str){
     itemCount = atoi(reply->str);
   } else {
+    if (argv[5] == NULL || argv[5] == "")
+      printf("WARNING: It is possible that you forgot to include a password. Execute HGET %s:items %s in redis-cli to see what is actually in that key. \n", redisPrefix, itemID);
     itemCount = 0;
   }
 

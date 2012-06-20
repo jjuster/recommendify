@@ -34,7 +34,8 @@ private
   end
 
   def run_native(item_id)
-    res = %x{#{native_path} --jaccard "#{redis_key}" "#{item_id}" "#{redis_url}"}
+    password = Recommendify.redis.client.password
+    res = %x{#{native_path} --jaccard "#{redis_key}" "#{item_id}" "#{redis_url} #{password}"}
     raise "error: dirty exit (#{$?})" if $? != 0
     res.split("\n").map do |line|
       sim = line.match(/OUT: \(([^\)]*)\) \(([^\)]*)\)/)
