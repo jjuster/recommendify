@@ -88,14 +88,16 @@ int main(int argc, char **argv){
   }
 
   /* Authentication (only runs if argv[5] exists) */
-  if(argv[5] != NULL || argv[5] != "")
-    reply = redisCommand(ctx, "AUTH %s", argv[5]);
-
-  //if their password is incorrect, you exit with error (return 0)
-  if (reply->type == REDIS_REPLY_ERROR) {
-    printf("Authentication error:\n %s\n", REDIS_REPLY_ERROR);
-    return 0
+  printf("Password (argv[5]): %s\n",(char *) argv[5]);
+  if(argv[5] != NULL || argv[5] != "") {
+    reply = redisCommand(c, "AUTH %s", (char *) argv[5]);
+    //if their password is incorrect, you exit with error (return 0)
+    if (reply->type == REDIS_REPLY_ERROR) {
+      printf("Authentication error:\n %s\n", REDIS_REPLY_ERROR);
+      return 0;
+    }
   }
+  
 
   freeReplyObject(reply);
 
