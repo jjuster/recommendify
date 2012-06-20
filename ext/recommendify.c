@@ -88,7 +88,7 @@ int main(int argc, char **argv){
   }
 
   /* Authentication (only runs if argv[5] exists) */
-  if(argv[5] != NULL || argv[5] != "") {
+  if(argc > 5) {
     reply = redisCommand(c, "AUTH %s", (char *) argv[5]);
     //if their password is incorrect, you exit with error (return 0)
     if (reply->type == REDIS_REPLY_ERROR) {
