@@ -96,10 +96,8 @@ int main(int argc, char **argv){
       printf("Authentication error:\n %s\n", REDIS_REPLY_ERROR);
       return 0;
     }
+    freeReplyObject(reply);
   }
-  
-
-  freeReplyObject(reply);
 
   /* get item count */
   reply = redisCommand(c,"HGET %s:items %s", redisPrefix, itemID);    
